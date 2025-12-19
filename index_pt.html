@@ -117,7 +117,7 @@
         <a href="https://play.google.com/store/apps/details?id=com.galaxyexpress.ninja_camera" class="download-btn" target="_blank">Obter no Google Play</a>
       </div>
       <div class="download-card pro">
-        <h3>WatcherCamAI Pro</h3><p style="color:var(--text-sub);">Versão Premium</p><p class="price">$2.49</p>
+        <h3>WatcherCamAI Pro</h3><p style="color:var(--text-sub);">Versão Premium</p><p class="price"><span id="pro-price-display">$2.49</span></p>
         <ul><li>Todos os Recursos Grátis</li><li>Captura com Tela Desligada</li><li>Captura em Segundo Plano</li><li>Sem Anúncios</li><li>Suporte Prioritário</li></ul>
         <a href="https://meitel.gumroad.com/l/WatcherCamAI-pro" class="download-btn" target="_blank">Comprar no Gumroad</a>
       </div>
@@ -146,5 +146,34 @@
     <p class="footer-email"><a href="mailto:galaxyexpress111@outlook.jp">galaxyexpress111@outlook.jp</a></p>
   </footer>
   <script>document.querySelectorAll('.faq-question').forEach(q=>{q.addEventListener('click',()=>{q.parentElement.classList.toggle('active');});});</script>
+
+  <!-- Gumroad Overlay -->
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+  
+  <!-- IP-based Price Switching for India -->
+  <script>
+    (function() {
+      fetch("https://ipapi.co/json/")
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          if (data.country_code === "IN") {
+            // Switch purchase button to India pricing
+            var proBtn = document.getElementById("pro-buy-btn");
+            if (proBtn) {
+              proBtn.href = "https://meitel.gumroad.com/l/ninjacamai-pro-india";
+            }
+            // Switch price display
+            var priceDisplay = document.getElementById("pro-price-display");
+            if (priceDisplay) {
+              priceDisplay.textContent = "₹79";
+            }
+          }
+        })
+        .catch(function(err) {
+          console.log("IP detection failed, using default pricing");
+        });
+    })();
+  </script>
+
 </body>
 </html>

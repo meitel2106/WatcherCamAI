@@ -1135,7 +1135,7 @@
       <div class="download-card pro">
         <h3>WatcherCamAI Pro</h3>
         <p style="color:var(--text-sub);">有料版</p>
-        <p class="price">$2.49</p>
+        <p class="price"><span id="pro-price-display">$2.49</span></p>
         <ul>
           <li>無料版のすべての機能</li>
           <li>画面オフ撮影</li>
@@ -1143,14 +1143,14 @@
           <li>広告なし</li>
           <li>優先サポート</li>
         </ul>
-        <a href="https://meitel.gumroad.com/l/WatcherCamAI-pro" class="download-btn" target="_blank" rel="noopener">Gumroadで購入</a>
+        <a id="pro-buy-btn" class="gumroad-button download-btn" href="https://meitel.gumroad.com/l/WatcherCamAI-pro">Gumroadで購入</a>
       </div>
     </div>
 
     <!-- 試用版 -->
     <div class="trial-link">
       💡 購入前にPro版を試したい方へ：<br>
-      <a href="https://meitel.gumroad.com/l/WatcherCamAI-pro-trial" target="_blank" rel="noopener">WatcherCamAI Pro 体験版（無料）をダウンロード →</a>
+      <a id="pro-trial-btn" class="gumroad-button" href="https://meitel.gumroad.com/l/WatcherCamAI-pro-trial">WatcherCamAI Pro 体験版（無料）をダウンロード →</a>
     </div>
   </section>
 
@@ -1231,5 +1231,34 @@
       });
     });
   </script>
+
+  <!-- Gumroad Overlay -->
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+  
+  <!-- IP-based Price Switching for India -->
+  <script>
+    (function() {
+      fetch("https://ipapi.co/json/")
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          if (data.country_code === "IN") {
+            // Switch purchase button to India pricing
+            var proBtn = document.getElementById("pro-buy-btn");
+            if (proBtn) {
+              proBtn.href = "https://meitel.gumroad.com/l/ninjacamai-pro-india";
+            }
+            // Switch price display
+            var priceDisplay = document.getElementById("pro-price-display");
+            if (priceDisplay) {
+              priceDisplay.textContent = "₹79";
+            }
+          }
+        })
+        .catch(function(err) {
+          console.log("IP detection failed, using default pricing");
+        });
+    })();
+  </script>
+
 </body>
 </html>

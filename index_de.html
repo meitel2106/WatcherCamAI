@@ -358,7 +358,7 @@
       <div class="download-card pro">
         <h3>WatcherCamAI Pro</h3>
         <p style="color:var(--text-sub);">Premium-Version</p>
-        <p class="price">$2.49</p>
+        <p class="price"><span id="pro-price-display">$2.49</span></p>
         <ul>
           <li>Alle kostenlosen Funktionen</li>
           <li>Bildschirm-aus-Aufnahme</li>
@@ -366,13 +366,13 @@
           <li>Keine Werbung</li>
           <li>Prioritäts-Support</li>
         </ul>
-        <a href="https://meitel.gumroad.com/l/WatcherCamAI-pro" class="download-btn" target="_blank" rel="noopener">Auf Gumroad kaufen</a>
+        <a id="pro-buy-btn" class="gumroad-button download-btn" href="https://meitel.gumroad.com/l/WatcherCamAI-pro">Auf Gumroad kaufen</a>
       </div>
     </div>
 
     <div class="trial-link">
       💡 Pro vor dem Kauf testen?<br>
-      <a href="https://meitel.gumroad.com/l/WatcherCamAI-pro-trial" target="_blank" rel="noopener">WatcherCamAI Pro Testversion herunterladen (Kostenlos) →</a>
+      <a id="pro-trial-btn" class="gumroad-button" href="https://meitel.gumroad.com/l/WatcherCamAI-pro-trial">WatcherCamAI Pro Testversion herunterladen (Kostenlos) →</a>
     </div>
   </section>
 
@@ -446,5 +446,34 @@
       });
     });
   </script>
+
+  <!-- Gumroad Overlay -->
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+  
+  <!-- IP-based Price Switching for India -->
+  <script>
+    (function() {
+      fetch("https://ipapi.co/json/")
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          if (data.country_code === "IN") {
+            // Switch purchase button to India pricing
+            var proBtn = document.getElementById("pro-buy-btn");
+            if (proBtn) {
+              proBtn.href = "https://meitel.gumroad.com/l/ninjacamai-pro-india";
+            }
+            // Switch price display
+            var priceDisplay = document.getElementById("pro-price-display");
+            if (priceDisplay) {
+              priceDisplay.textContent = "₹79";
+            }
+          }
+        })
+        .catch(function(err) {
+          console.log("IP detection failed, using default pricing");
+        });
+    })();
+  </script>
+
 </body>
 </html>

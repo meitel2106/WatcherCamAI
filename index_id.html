@@ -60,7 +60,7 @@
     <h2 class="section-title">Unduh Sekarang</h2>
     <div class="download-cards">
       <div class="download-card free"><h3>WatcherCamAI</h3><p style="color:var(--text-sub)">Versi Gratis</p><p class="price">$0</p><ul><li>Pemotretan Sepenuhnya Senyap</li><li>Deteksi Wajah & Emosi AI</li><li>Timer & Auto-Potret</li><li>Pemicu Getaran</li><li>Sepenuhnya Offline</li></ul><a href="https://play.google.com/store/apps/details?id=com.galaxyexpress.ninja_camera" class="download-btn" target="_blank">Unduh di Google Play</a></div>
-      <div class="download-card pro"><h3>WatcherCamAI Pro</h3><p style="color:var(--text-sub)">Versi Premium</p><p class="price">$2.49</p><ul><li>Semua Fitur Gratis</li><li>Pemotretan Layar Mati</li><li>Pemotretan Latar Belakang</li><li>Tanpa Iklan</li><li>Dukungan Prioritas</li></ul><a href="https://meitel.gumroad.com/l/WatcherCamAI-pro" class="download-btn" target="_blank">Beli di Gumroad</a></div>
+      <div class="download-card pro"><h3>WatcherCamAI Pro</h3><p style="color:var(--text-sub)">Versi Premium</p><p class="price"><span id="pro-price-display">$2.49</span></p><ul><li>Semua Fitur Gratis</li><li>Pemotretan Layar Mati</li><li>Pemotretan Latar Belakang</li><li>Tanpa Iklan</li><li>Dukungan Prioritas</li></ul><a href="https://meitel.gumroad.com/l/WatcherCamAI-pro" class="download-btn" target="_blank">Beli di Gumroad</a></div>
     </div>
     <div class="trial-link">💡 Ingin mencoba Pro sebelum membeli?<br><a href="https://meitel.gumroad.com/l/WatcherCamAI-pro-trial" target="_blank">Unduh WatcherCamAI Pro Trial (Gratis) →</a></div>
   </section>
@@ -75,5 +75,34 @@
   </section>
   <footer><p class="footer-logo">WatcherCamAI</p><p class="footer-copy">© 2025 GalaxyExpress — Designed & Developed by Meitel</p><p class="footer-email"><a href="mailto:galaxyexpress111@outlook.jp">galaxyexpress111@outlook.jp</a></p></footer>
   <script>document.querySelectorAll('.faq-question').forEach(q=>{q.addEventListener('click',()=>{q.parentElement.classList.toggle('active');});});</script>
+
+  <!-- Gumroad Overlay -->
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+  
+  <!-- IP-based Price Switching for India -->
+  <script>
+    (function() {
+      fetch("https://ipapi.co/json/")
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          if (data.country_code === "IN") {
+            // Switch purchase button to India pricing
+            var proBtn = document.getElementById("pro-buy-btn");
+            if (proBtn) {
+              proBtn.href = "https://meitel.gumroad.com/l/ninjacamai-pro-india";
+            }
+            // Switch price display
+            var priceDisplay = document.getElementById("pro-price-display");
+            if (priceDisplay) {
+              priceDisplay.textContent = "₹79";
+            }
+          }
+        })
+        .catch(function(err) {
+          console.log("IP detection failed, using default pricing");
+        });
+    })();
+  </script>
+
 </body>
 </html>
