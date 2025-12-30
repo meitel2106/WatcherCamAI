@@ -685,23 +685,60 @@
     }
 
     /* 試用版リンク */
-    .trial-link {
+        .trial-link {
       margin-top: 50px;
-      padding: 20px;
-      background: rgba(245, 200, 66, 0.1);
-      border: 2px dashed rgba(245, 200, 66, 0.5);
-      border-radius: 12px;
+      padding: 30px 40px;
+      background: linear-gradient(135deg, rgba(245, 200, 66, 0.15) 0%, rgba(255, 107, 107, 0.1) 100%);
+      border: 2px solid rgba(245, 200, 66, 0.6);
+      border-radius: 16px;
       display: inline-block;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(245, 200, 66, 0.2);
+      animation: trialPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes trialPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(245, 200, 66, 0.2); }
+      50% { box-shadow: 0 0 40px rgba(245, 200, 66, 0.4); }
+    }
+
+    .trial-link-title {
+      font-size: 1.1rem;
+      color: var(--text-main);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .trial-link-title .icon {
+      font-size: 1.5rem;
     }
 
     .trial-link a {
-      color: var(--ninja-gold);
+      display: inline-block;
+      padding: 15px 30px;
+      background: linear-gradient(135deg, var(--ninja-gold) 0%, #ffaa00 100%);
+      color: #000;
       text-decoration: none;
       font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(245, 200, 66, 0.4);
     }
 
     .trial-link a:hover {
-      text-decoration: underline;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(245, 200, 66, 0.6);
+      text-decoration: none;
+    }
+
+    .trial-link-note {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: var(--text-sub);
     }
 
     /* ========================================
@@ -1162,8 +1199,12 @@
 
     <!-- 試用版 -->
     <div class="trial-link">
-      💡 購入前にPro版を試したい方へ：<br>
-      <a id="pro-trial-btn" href="https://meitel.gumroad.com/l/WatcherCamAI-pro-trial" target="_blank" rel="noopener">WatcherCamAI Pro 体験版（無料）をダウンロード →</a>
+      <div class="trial-link-title">
+        <span class="icon">🎁</span>
+        <span>購入前にPro版を試してみませんか？</span>
+      </div>
+      <a id="pro-trial-btn" href="https://meitel.gumroad.com/l/WatcherCamAI-pro-trial" target="_blank" rel="noopener">🚀 無料体験版をダウンロード</a>
+      <div class="trial-link-note">✓ クレジットカード不要 ・ ✓ Pro機能を期間限定でお試し</div>
     </div>
   </section>
 
